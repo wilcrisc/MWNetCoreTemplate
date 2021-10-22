@@ -1,0 +1,8 @@
+﻿$theme-colors: ( "primary": #2745A0, "info": #5b99ea, "success": #036E3A, "warning": #EEBF41, "danger": #d26d69 );
+@import "../lib/bootstrap5/bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+
+ul,li,a{
+    text-decoration: none;
+}

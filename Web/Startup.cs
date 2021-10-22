@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using Infrastructure.Data;
 using Core.Interfaces;
 using Infrastructure.Respositories;
+using Core.Entities;
+using Service.Payment;
 
 namespace Web
 {
@@ -29,8 +31,8 @@ namespace Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-         
-            services.AddDbContext<ServicePortalDbContext>(options =>
+
+            services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
@@ -40,10 +42,14 @@ namespace Web
             #endregion
 
             services.AddDatabaseDeveloperPageExceptionFilter();
+                    
+            services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+            .AddDefaultTokenProviders()
+            .AddDefaultUI()
+            .AddEntityFrameworkStores<AppDbContext>();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ServicePortalDbContext>();
-          
+            services.Configure<PaypalApiSetting>(Configuration.GetSection("PayPal"));
+
             services.AddRazorPages();
 
         }
@@ -53,7 +59,7 @@ namespace Web
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();              
                 app.UseMigrationsEndPoint();
             }
             else
@@ -74,6 +80,8 @@ namespace Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapDefaultControllerRoute();
+
             });
         }
     }

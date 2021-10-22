@@ -8,10 +8,10 @@ namespace Infrastructure.Respositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ServicePortalDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
         private bool disposed;
 
-        public UnitOfWork(ServicePortalDbContext dbContext)
+        public UnitOfWork(AppDbContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
             Ticket = new TicketRepositoryAsync(_dbContext);

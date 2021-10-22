@@ -15,7 +15,7 @@ namespace Infrastructure.Repositories
     {
         private readonly DbSet<Ticket> _db;
 
-        public TicketRepositoryAsync(ServicePortalDbContext dbContext) : base(dbContext)
+        public TicketRepositoryAsync(AppDbContext dbContext) : base(dbContext)
         {
             _db = dbContext.Set<Ticket>();
         }

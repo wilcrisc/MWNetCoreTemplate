@@ -1,0 +1,330 @@
+﻿@page
+@model Web.Pages.Admin.Users.IndexModel
+@{
+}
+
+
+@section PageStyle{
+    <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs/datatables.min.css" />
+    <link href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.css" rel="stylesheet" type="text/css" />
+    <link href="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.css" rel="stylesheet" type="text/css" />
+    <style>
+        .dataTables_wrapper {
+            padding: 10px;
+            *
+
+        {
+            font-family: "Montserrat", arial, sans-serif !important;
+        }
+
+        .bottom {
+            padding: 10px 10px 5px 10px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            ul
+
+        {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        div li {
+            padding: 0px !important;
+        }
+
+        .dataTables_info {
+            margin-top: 4px;
+            white-space: pre-wrap !important;
+            word-wrap: break-word;
+            width: 200px;
+        }
+
+        .dataTables_filter, .dataTables_length {
+            margin-top: 8px;
+        }
+
+        }
+
+        th, td {
+            font-family: "Montserrat", arial, sans-serif !important;
+            border-top: none !important;
+        }
+
+        }
+
+        table.dataTable thead .sorting, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc {
+            background-image: none !important;
+        }
+    </style>
+
+}
+
+<div class="app-content pt-3 p-md-3 p-lg-4">
+    <div class="container-xl">
+
+        <div class="row g-3 mb-4 align-items-center justify-content-between">
+            <div class="col-auto">
+                <h1 class="app-page-title mb-0">Users</h1>
+            </div>
+            <div class="col-auto d-none">
+                <div class="page-utilities">
+                    <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+                        <div class="col-auto">
+                            <form class="table-search-form row gx-1 align-items-center">
+                                <div class="col-auto">
+                                    <input type="text" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="Search">
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn app-btn-secondary">Search</button>
+                                </div>
+                            </form>
+
+                        </div><!--//col-->
+                        <div class="col-auto">
+
+                            <select class="form-select w-auto">
+                                <option selected value="option-1">All</option>
+                                <option value="option-2">This week</option>
+                                <option value="option-3">This month</option>
+                                <option value="option-4">Last 3 months</option>
+
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <a class="btn app-btn-secondary" href="#">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download me-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                    <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                </svg>
+                                Download CSV
+                            </a>
+                        </div>
+                    </div><!--//row-->
+                </div><!--//table-utilities-->
+            </div><!--//col-auto-->
+        </div><!--//row-->
+
+
+        <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+            <a class="flex-sm-fill text-sm-center nav-link active" id="users-all-tab" data-bs-toggle="tab" href="#users-all" role="tab" aria-controls="users-all" aria-selected="true">All Users</a>
+            <a class="flex-sm-fill text-sm-center nav-link" id="users-learners-tab" data-bs-toggle="tab" href="#users-learners" role="tab" aria-controls="users-learners" aria-selected="false">Learners</a>
+            <a class="flex-sm-fill text-sm-center nav-link" id="users-tutors-tab" data-bs-toggle="tab" href="#users-tutors" role="tab" aria-controls="users-tutors" aria-selected="false">Tutors</a>
+            <a class="flex-sm-fill text-sm-center nav-link" id="users-admins-tab" data-bs-toggle="tab" href="#users-admins" role="tab" aria-controls="users-admins" aria-selected="false">Administrators</a>
+        </nav>
+
+
+        <div class="tab-content" id="orders-table-tab-content">
+            <div class="tab-pane fade show active" id="users-all" role="tabpanel" aria-labelledby="users-all-tab">
+                <div class="app-card app-card-orders-table shadow-sm mb-5">
+                    <div class="app-card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="table app-table-hover mb-0 text-left">
+                                <thead>
+                                    <tr>
+                                        <th class="cell">Name</th>
+                                        <th class="cell">Email</th>
+                                        @*<th class="cell">Gender</th>*@
+                                        <th class="cell">Phone</th>
+                                        <th class="cell">User Type</th>
+
+                                        <th class="cell"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.AppUsers.Count() != 0)
+                                    {
+
+                                        @foreach (var user in Model.AppUsers)
+                                        {
+                                            <tr>
+                                                <td class="cell">@user.Name</td>
+                                                <td class="cell">@user.Email</td>
+                                                @*<td class="cell">@user.Gender</td>*@
+                                                <td class="cell">@user.PhoneNumber</td>
+                                                <td class="cell">@user.UserType</td>
+
+                                                <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="6">No User Found</td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--//table-responsive-->
+
+                    </div><!--//app-card-body-->
+                </div><!--//app-card-->
+
+            </div><!--//tab-pane-->
+
+            <div class="tab-pane fade" id="users-learners" role="tabpanel" aria-labelledby="users-learners-tab">
+                <div class="app-card app-card-orders-table mb-5">
+                    <div class="app-card-body">
+                        <div class="">
+
+                            <table id="example2" class="table app-table-hover mb-0 text-left">
+                                <thead>
+                                    <tr>
+                                        <th class="cell">Name</th>
+                                        <th class="cell">Email</th>
+                                    
+                                        <th class="cell">Phone</th>
+                                        <th class="cell">User Type</th>
+
+                                        <th class="cell"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.AppUsers.Count() != 0)
+                                    {
+
+                                        @foreach (var user in Model.AppUsers.Where(x => x.UserType == "User"))
+                                        {
+                                            <tr>
+                                                <td class="cell">@user.Name</td>
+                                                <td class="cell">@user.Email</td>
+                                               
+                                                <td class="cell">@user.PhoneNumber</td>
+                                                <td class="cell">@user.UserType</td>
+
+                                                <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="6">No User Found</td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div><!--//table-responsive-->
+                    </div><!--//app-card-body-->
+                </div><!--//app-card-->
+            </div><!--//tab-pane-->
+
+         
+         
+        <div class="tab-pane fade" id="users-admins" role="tabpanel" aria-labelledby="users-admins-tab">
+                <div class="app-card app-card-orders-table mb-5">
+                    <div class="app-card-body">
+                        <div class="table-responsive">
+                            <table id="example4" class="table app-table-hover mb-0 text-left">
+                                <thead>
+                                    <tr>
+                                        <th class="cell">Name</th>
+                                        <th class="cell">Email</th>
+                                       
+                                        <th class="cell">Phone</th>
+                                        <th class="cell">User Type</th>
+
+                                        <th class="cell"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.AppUsers.Count() != 0)
+                                    {
+
+                                        @foreach (var user in Model.AppUsers.Where(x => x.UserType == "Admin"))
+                                        {
+                                            <tr>
+                                                <td class="cell">@user.Name</td>
+                                                <td class="cell">@user.Email</td>
+                                             
+                                                <td class="cell">@user.PhoneNumber</td>
+                                                <td class="cell">@user.UserType</td>
+
+                                                <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="6">No User Found</td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div><!--//table-responsive-->
+                    </div><!--//app-card-body-->
+                </div><!--//app-card-->
+            </div><!--//tab-pane-->
+        </div><!--//tab-content-->
+
+
+
+    </div><!--//container-fluid-->
+</div><!--//app-content-->
+
+@section Scripts{
+
+    <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.js"></script>
+    <script src="//bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
+
+    <script>
+        (function () {
+            $(document).ready(function () {
+                var table, table2, table3, table4;
+                table = $('#example').DataTable({
+                    dom: '<"top"<"clear">>rt<"bottom"ipf<"clear">>',
+                    pageLength: 10,
+                    responsive: false,
+                    searchHighlight: true
+                });
+                 table2 = $('#example2').DataTable({
+                    dom: '<"top"<"clear">>rt<"bottom"ipf<"clear">>',
+                    pageLength: 10,
+                    responsive: false,
+                    searchHighlight: true
+                });
+                 table3 = $('#example3').DataTable({
+                    dom: '<"top"<"clear">>rt<"bottom"ipf<"clear">>',
+                    pageLength: 10,
+                     responsive: false,
+                    searchHighlight: true
+                });
+                 table4 = $('#example4').DataTable({
+                    dom: '<"top"<"clear">>rt<"bottom"ipf<"clear">>',
+                    pageLength: 10,
+                     responsive: false,
+                    searchHighlight: true
+                });
+            });
+
+            $(document).on('init.dt.dth', function (e, settings, json) {
+                var table;
+                table = new $.fn.dataTable.Api(settings);
+                if (settings.oInit.searchHighlight) {
+                    return table.on('draw', function () {
+                        var body;
+                        body = $(table.table().body());
+                        body.unhighlight();
+                        return body.highlight(table.search());
+                    });
+                }
+            });
+
+        }).call(this);
+    </script>
+
+}

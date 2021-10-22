@@ -10,9 +10,9 @@ namespace Infrastructure.Respositories
 {
     public class GenericRepositoryAsync<T> : IGenericRepositoryAsync<T> where T : class
     {
-        private readonly ServicePortalDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
 
-        public GenericRepositoryAsync(ServicePortalDbContext dbContext)
+        public GenericRepositoryAsync(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
