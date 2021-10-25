@@ -4,47 +4,63 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - App Template</title>
-    <link href="~/lib/bootstrap5/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/childtheme.css" />
+    <link rel="stylesheet" href="~/css/childtheme.css" asp-append-version="true" />
     @await RenderSectionAsync("PageStyle", required: false)
 
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">App Template</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<body class="d-flex flex-column h-100">
+    <header class="shadow-sm">
+        <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/Index">Mindweb eSolutions</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="navbar-collapse collapse show" id="navbarsExample09" style="">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown09">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
                 <partial name="_LoginPartial" />
-
             </div>
         </nav>
     </header>
+
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="py-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - Mindweb eSolutions .Net Core Template - <a asp-area="" asp-page="/Privacy">Privacy</a>
+
+
+    <footer class="footer mt-auto py-3 bg-primary">
+        <div class="container d-flex justify-content-between">
+            <span class="text-white">&copy; <span id="year"></span> - Mindweb eSolutions .Net Core Template </span>
+            <span class="text-white">version 1.0</span>
         </div>
     </footer>
 
-
-    <script src="~/lib/bootstrap5/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/lib/plugins/popper.min.js"></script>
+    <script src="~/lib/bootstrap5/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap5/@@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/aos/aos.js"></script>
-
+    @*<script src="~/lib/aos/aos.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
-
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

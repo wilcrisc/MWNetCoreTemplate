@@ -1,7 +1,11 @@
-﻿$theme-colors: ( "primary": #2745A0, "info": #5b99ea, "success": #036E3A, "warning": #EEBF41, "danger": #d26d69 );
-@import "../lib/bootstrap5/bootstrap/scss/bootstrap";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+﻿$theme-colors: ( "primary": #036E3A, "info": #5b99ea, "success": #3CBF98, "warning": #EEBF41, "danger": #d26d69 );
 
+
+@import "../lib/bootstrap5/bootstrap/scss/bootstrap";
+
+html {
+    height: 100%;
+}
 
 ul,li,a{
     text-decoration: none;
