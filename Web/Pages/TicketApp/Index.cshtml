@@ -3,9 +3,16 @@
 @{
 }
 
-<a id="reload" class="btn btn-success">
-    <i class="fas fa-refresh"></i> Refresh Tickets
-</a>
+<div class="d-inline">
+    <a id="reload" class="btn btn-success">
+        <i class="fas fa-refresh"></i> Refresh Tickets
+    </a>
+    <a onclick="jQueryModalGet('?handler=CreateEdiTicketModal', 'Create Ticket')" class="btn btn-warning">
+        + Create Ticket
+    </a>
+</div>
+
+
 <div id="viewTicket">
 </div>
 

@@ -5,11 +5,13 @@ using Infrastructure.Respositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Service.Payment;
+using Web.PageService;
 
 namespace Web
 {
@@ -43,6 +45,10 @@ namespace Web
             .AddEntityFrameworkStores<AppDbContext>();
 
             services.Configure<PaypalApiSetting>(Configuration.GetSection("PayPal"));
+
+            services.AddHttpContextAccessor();
+            services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
+            services.AddScoped<IRazorRenderService, RazorRenderService>();
 
             services.AddRazorPages();
 
