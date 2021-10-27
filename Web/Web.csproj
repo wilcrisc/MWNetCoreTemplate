@@ -38,4 +38,16 @@
     <ProjectReference Include="..\Service\Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\css\childtheme.css">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>childtheme.scss</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\css\childtheme.scss">
+      <Generator>SassTranspiler</Generator>
+      <LastGenOutput>childtheme.css</LastGenOutput>
+    </Content>
+  </ItemGroup>
+
 </Project>

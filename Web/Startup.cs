@@ -1,20 +1,14 @@
+using Core.Entities;
+using Core.Interfaces;
+using Infrastructure.Data;
+using Infrastructure.Respositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Infrastructure.Data;
-using Core.Interfaces;
-using Infrastructure.Respositories;
-using Core.Entities;
 using Service.Payment;
 
 namespace Web

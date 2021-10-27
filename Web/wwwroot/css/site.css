@@ -1,14 +1,14 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
+/*a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
-}
+}*/
 
 /* Provide sufficient contrast against white background */
-a {
+/*a {
   color: #0366d6;
 }
 
@@ -22,11 +22,11 @@ a {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
-}
+}*/
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+/*html {
   font-size: 14px;
 }
 @media (min-width: 768px) {
@@ -49,23 +49,229 @@ html {
 button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
-}
+}*/
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+/*html {
   position: relative;
   min-height: 100%;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+body {*/
+/* Margin bottom by footer height */
+/*margin-bottom: 60px;
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+  line-height: 60px;*/ /* Vertically center the text there */
+/*}*/
+
+
+section {
+    padding: 60px 0;
+    overflow: hidden;
 }
+
+.section-bg {
+    background-color: #f6f6f7;
+}
+
+.section-title {
+    padding-bottom: 30px;
+}
+
+    .section-title h2 {
+        font-size: 32px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        position: relative;
+    }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #036E3A;
+            bottom: 0;
+            left: 0;
+        }
+
+    .section-title p {
+        margin-bottom: 0;
+    }
+
+
+
+
+/*--------------------------------------------------------------
+# Contact
+--------------------------------------------------------------*/
+.contact .info {
+    padding: 30px;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+    .contact .info i {
+        font-size: 20px;
+        color: #fff;
+        float: left;
+        width: 44px;
+        height: 44px;
+        background: #036E3A;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .contact .info h4 {
+        padding: 0 0 0 60px;
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #36343a;
+    }
+
+    .contact .info p {
+        padding: 0 0 0 60px;
+        margin-bottom: 0;
+        font-size: 14px;
+        color: #686470;
+    }
+
+.contact .php-email-form {
+    width: 100%;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
+}
+
+    .contact .php-email-form .form-group {
+        padding-bottom: 8px;
+    }
+
+    .contact .php-email-form .error-message {
+        display: none;
+        color: #fff;
+        background: #ed3c0d;
+        text-align: left;
+        padding: 15px;
+        font-weight: 600;
+    }
+
+        .contact .php-email-form .error-message br + br {
+            margin-top: 25px;
+        }
+
+    .contact .php-email-form .sent-message {
+        display: none;
+        color: #fff;
+        background: #18d26e;
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+    }
+
+    .contact .php-email-form .loading {
+        display: none;
+        background: #fff;
+        text-align: center;
+        padding: 15px;
+    }
+
+        .contact .php-email-form .loading:before {
+            content: "";
+            display: inline-block;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            margin: 0 10px -6px 0;
+            border: 3px solid #18d26e;
+            border-top-color: #eee;
+            -webkit-animation: animate-loading 1s linear infinite;
+            animation: animate-loading 1s linear infinite;
+        }
+
+    .contact .php-email-form input, .contact .php-email-form textarea {
+        border-radius: 0;
+        box-shadow: none;
+        font-size: 14px;
+    }
+
+    .contact .php-email-form input {
+        height: 44px;
+    }
+
+    .contact .php-email-form textarea {
+        padding: 10px 12px;
+    }
+
+    .contact .php-email-form button[type=submit] {
+        background: #036E3A;
+        border: 0;
+        padding: 10px 30px;
+        color: #fff;
+        transition: 0.4s;
+        border-radius: 50px;
+    }
+
+        .contact .php-email-form button[type=submit]:hover {
+            background: #00805d;
+        }
+
+@-webkit-keyframes animate-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+/*--------------------------------------------------------------
+# Clients
+--------------------------------------------------------------*/
+.clients {
+    background: #f6f6f7;
+    text-align: center;
+    padding: 5px 0;
+}
+
+    .clients img {
+        width: 40%;
+        filter: grayscale(100);
+        transition: all 0.4s ease-in-out;
+        display: inline-block;
+        padding: 15px 0;
+    }
+
+        .clients img:hover {
+            filter: none;
+            transform: scale(1.1);
+        }

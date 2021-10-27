@@ -9,7 +9,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 }
 
 a {
-    color: #2745A0;
+    color: #036E3A;
     text-decoration: none
 }
 
@@ -82,7 +82,7 @@ a.app-link {
 }
 
     a.app-link:hover {
-        color: #2745A0;
+        color: #036E3A;
         -webkit-text-decoration-color: rgba(21,163,98,.8);
         text-decoration-color: rgba(21,163,98,.8)
     }
@@ -113,9 +113,9 @@ button.close:focus {
     }
 
 .app-btn-primary, .btn-primary, .btn-success {
-    background: #2745A0;
+    background: #036E3A;
     color: #fff;
-    border-color: #2745A0
+    border-color: #036E3A
 }
 
     .app-btn-primary:hover, .btn-primary:hover {
@@ -131,19 +131,19 @@ button.close:focus {
 }
 
     .app-btn-secondary:hover {
-        color: #2745A0;
-        border: 1px solid #2745A0;
+        color: #036E3A;
+        border: 1px solid #036E3A;
         background: #fff
     }
 
 .btn-light {
     background: #f5f6fe;
-    color: #2745A0
+    color: #036E3A
 }
 
     .btn-light:hover {
         background: #f5f6fe;
-        color: #2745A0
+        color: #036E3A
     }
 
 .form-control {
@@ -161,8 +161,8 @@ button.close:focus {
     }
 
 .form-check-input:checked {
-    background-color: #2745A0;
-    border-color: #2745A0
+    background-color: #036E3A;
+    border-color: #036E3A
 }
 
 .dropdown-menu {
@@ -236,7 +236,7 @@ button.close:focus {
 
         .app-search-form .search-btn:active, .app-search-form .search-btn:focus, .app-search-form .search-btn:hover {
             outline: none !important;
-            color: #2745A0;
+            color: #036E3A;
             box-shadow: none
         }
 
@@ -356,7 +356,7 @@ button.close:focus {
 .app-notifications-dropdown .app-icon-holder {
     display: inline-block;
     background: #edfdf6;
-    color: #2745A0;
+    color: #036E3A;
     width: 36px;
     height: 36px;
     padding-top: 4px;
@@ -405,7 +405,7 @@ button.close:focus {
     }
 
         .search-mobile-trigger:hover {
-            color: #2745A0;
+            color: #036E3A;
             -webkit-opacity: 1;
             -moz-opacity: 1;
             opacity: 1
@@ -551,9 +551,9 @@ button.close:focus {
     }
 
         .app-nav .nav-link.active {
-            color: #2745A0;
+            color: #036E3A;
             background: #edfdf6;
-            border-left: 3px solid #2745A0;
+            border-left: 3px solid #036E3A;
             font-weight: 500
         }
 
@@ -563,7 +563,7 @@ button.close:focus {
         }
 
         .app-nav .nav-link:hover {
-            color: #2745A0
+            color: #036E3A
         }
 
     .app-nav .nav-icon {
@@ -641,11 +641,11 @@ button.close:focus {
     }
 
     .app-nav .submenu-link.active {
-        color: #2745A0
+        color: #036E3A
     }
 
         .app-nav .submenu-link.active:before {
-            background-color: #2745A0
+            background-color: #036E3A
         }
 
 .app-sidepanel-footer {
@@ -741,7 +741,7 @@ button.close:focus {
 }
 
     .app-card.border-left-decoration {
-        border-left: 3px solid #2745A0
+        border-left: 3px solid #036E3A
     }
 
     .app-card .app-card-link-mask {
@@ -863,7 +863,7 @@ button.close:focus {
 .app-card .app-icon-holder {
     display: inline-block;
     background: #edfdf6;
-    color: #2745A0;
+    color: #036E3A;
     width: 50px;
     height: 50px;
     padding-top: 10px;
@@ -1061,8 +1061,8 @@ button.close:focus {
     }
 
         .app-nav-tabs .nav-link.active {
-            color: #2745A0;
-            border-bottom: 2px solid #2745A0
+            color: #036E3A;
+            border-bottom: 2px solid #036E3A
         }
 
             .app-nav-tabs .nav-link.active:hover {
@@ -1071,7 +1071,7 @@ button.close:focus {
 
         .app-nav-tabs .nav-link:hover {
             background: #edfdf6;
-            color: #2745A0
+            color: #036E3A
         }
 
 .app-pagination .pagination {
@@ -1120,7 +1120,7 @@ button.close:focus {
     padding-left: 0;
     font-size: 1rem;
     text-decoration: none;
-    color: #2745A0
+    color: #036E3A
 }
 
     .app-card-accordion .faq-accordion .accordion-button:after {
@@ -1407,7 +1407,7 @@ button.close:focus {
 
 
 .bg-primary {
-    background: #2745A0 !important;
+    background: #036E3A !important;
     color: #fff;
 }
 
@@ -1416,7 +1416,7 @@ button.close:focus {
 }
 
 .text-primary {
-    color: #2745A0 !important;
+    color: #036E3A !important;
 }
 
 

@@ -3,28 +3,30 @@
 @{
 }
 
-<h3>Create your <span class="text-success">User Account.</span></h3>
-<h6 class="text-muted">Choose an Account Type</h6>
-<hr />
+<div class="container">
+    <h3>Create your <span class="text-success">User Account.</span></h3>
+    <h6 class="text-muted">Choose an Account Type</h6>
+    <hr />
 
-<div class="row">
-    <div class="col-6 d-none">
-        <div class="card border-primary w-100" style="width: 18rem;">
-            @*<img class="card-img-top" src="~/img/tutor.jpg" alt="Card image cap">*@
-            <div class="card-body">
-                <h4 class="card-title">Tutor</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a asp-page="./Tutor" class="btn btn-primary">Register as Tutor</a>
+    <div class="row">
+        <div class="col-6 d-none">
+            <div class="card border-primary w-100" style="width: 18rem;">
+                @*<img class="card-img-top" src="~/img/tutor.jpg" alt="Card image cap">*@
+                <div class="card-body">
+                    <h4 class="card-title">Tutor</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a asp-page="./Tutor" class="btn btn-primary">Register as Tutor</a>
+                </div>
             </div>
         </div>
-    </div> 
-    <div class="col-12">
-        <div class="card border-primary w-100" style="width: 18rem;">
-            @*<img class="card-img-top" src="~/img/student.jpg" alt="Card image cap">*@
-            <div class="card-body">
-                <h4 class="card-title">User</h4>
-                <p class="card-text">Register as a user to gain access to the App Features. </p>
-                <a asp-page="./NewUser" class="btn btn-primary">Register as User</a>
+        <div class="col-12">
+            <div class="card border-primary w-100" style="width: 18rem;">
+                @*<img class="card-img-top" src="~/img/student.jpg" alt="Card image cap">*@
+                <div class="card-body">
+                    <h4 class="card-title">User</h4>
+                    <p class="card-text">Register as a user to gain access to the App Features. </p>
+                    <a asp-page="./NewUser" class="btn btn-primary">Register as User</a>
+                </div>
             </div>
         </div>
     </div>
