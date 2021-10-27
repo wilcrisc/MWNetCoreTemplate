@@ -2,7 +2,7 @@
 @model IEnumerable<Ticket>
 
 
-<table class="table">
+<table class="table mt-4 table-striped table-hover">
     <thead>
         <tr>
             <th>
@@ -28,7 +28,10 @@
             <td>@ticket.DateCreated</td>
             <td>@ticket.CreatedBy</td>
             <td>
-                <a class="btn btn-info btn-sm" onclick="jQueryModalGet('?handler=CreateEdiTicketModal&id=@ticket.TicketID', 'Update Ticket')">Edit Ticket</a>
+                <a class="btn btn-info" onclick="jQueryModalGet('?handler=CreateEdiTicketModal&id=@ticket.TicketID', 'Update Ticket')"><i class="fas fa-edit"></i></a>
+                <form method="post" asp-page="Index" asp-route-id="@ticket.TicketID" asp-page-handler="Delete" onsubmit="return jQueryModalDelete(this)" class="d-inline">
+                    <button type="submit" class="btn btn-danger text-white"> <i class="far fa-trash-alt"></i></button>
+                </form>
             </td>
         </tr>
     }

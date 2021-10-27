@@ -275,3 +275,54 @@ section {
             filter: none;
             transform: scale(1.1);
         }
+
+
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# Top Bar
+--------------------------------------------------------------*/
+#topbar {
+    height: 30px;
+    font-size: 12px;
+    transition: all 0.5s;
+    color: #333;
+    background: #f1f1f1;
+    padding: 0;
+}
+
+    #topbar .contact-info i {
+        font-style: normal;
+        color: #333;
+    }
+
+        #topbar .contact-info i a, #topbar .contact-info i span {
+            padding-left: 5px;
+            color: #333;
+        }
+
+        #topbar .contact-info i a {
+            line-height: 0;
+            transition: 0.3s;
+            transition: 0.3s;
+        }
+
+            #topbar .contact-info i a:hover {
+                color: #333;
+                text-decoration: underline;
+            }
+
+    #topbar .social-links a {
+        color: rgba(0, 0, 0, 0.7);
+        line-height: 0;
+        transition: 0.3s;
+        margin-left: 20px;
+    }
+
+        #topbar .social-links a:hover {
+            color: #333;
+        }

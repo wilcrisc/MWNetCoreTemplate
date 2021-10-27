@@ -51,7 +51,6 @@ namespace Web.Pages.TicketApp
             else
             {
                 //Update Modal
-
                 var thisTicket = _context.Tickets.Find(id);
                 return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_CreateOrEditTicket", thisTicket) });
 
@@ -66,21 +65,31 @@ namespace Web.Pages.TicketApp
             {
                 //Creating Ticket
                 _context.Tickets.Add(ticket);
-                await _context.SaveChangesAsync();
-
             }
             else
             {
                 //Updating Ticket
-
                 var editTicket = _context.Tickets.Find(id);
                 editTicket.Title = ticket.Title;
                 editTicket.Details = ticket.Details;
                 editTicket.CreatedBy = ticket.CreatedBy;
                 editTicket.DateCreated = ticket.DateCreated;
+            }
+            await _context.SaveChangesAsync();
+            var ticketList = _context.Tickets.AsEnumerable();
+            return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
 
+        }
+
+
+        public async Task<JsonResult> OnPostDeleteAsync(int id)
+        {
+        
+            if(id != 0)
+            {
+                var ticket =  await _context.Tickets.FindAsync(id);
+                _context.Tickets.Remove(ticket);
                 await _context.SaveChangesAsync();
-
             }
 
             var ticketList = _context.Tickets.AsEnumerable();
