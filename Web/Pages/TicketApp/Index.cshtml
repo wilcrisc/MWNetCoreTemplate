@@ -3,4 +3,21 @@
 @{
 }
 
-<h1>Default Page</h1>
+<a id="reload" class="btn btn-success">
+    <i class="fas fa-refresh"></i> Refresh Tickets
+</a>
+<div id="viewTicket">
+</div>
+
+@section Scripts{ 
+    <script>
+        $(document).ready(function () {
+            $('#viewTicket').load('?handler=ViewTicketPartial');
+        });
+        $(function () {
+            $('#reload').on('click', function () {
+                $('#viewTicket').load('?handler=ViewTicketPartial');
+            });
+        });
+    </script>
+}

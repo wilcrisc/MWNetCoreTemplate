@@ -1,0 +1,33 @@
+﻿@using Core.Entities
+@model IEnumerable<Ticket>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                Date Created
+            </th>
+            <th>
+                Created By
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var ticket in Model)
+    {
+        <tr>
+            <td>@ticket.Title</td>
+            <td>@ticket.Details</td>
+            <td>@ticket.DateCreated</td>
+            <td>@ticket.CreatedBy</td>
+        </tr>
+    }
+
+</table>
