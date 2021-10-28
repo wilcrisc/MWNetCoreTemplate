@@ -71,6 +71,60 @@ body {*/
 /*}*/
 
 
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #fff;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    z-index: 99999;
+    align-items: center;
+}
+
+#mwIcon {
+    animation: float 3s ease-in-out infinite;
+}
+
+
+
+.hideLoader {
+    animation: vanish .5s forwards;
+}
+
+@keyframes vanish {
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translatey(0px);
+    }
+
+    50% {
+        transform: translatey(-20px);
+    }
+
+    100% {
+        transform: translatey(0px);
+    }
+}
+
+
+
+
+
+/*--------------------------------------------------------------
+# Section
+--------------------------------------------------------------*/
 section {
     padding: 60px 0;
     overflow: hidden;
@@ -264,7 +318,7 @@ section {
 }
 
     .clients img {
-        width: 40%;
+        width: 50%;
         filter: grayscale(100);
         transition: all 0.4s ease-in-out;
         display: inline-block;
@@ -291,7 +345,7 @@ section {
     font-size: 12px;
     transition: all 0.5s;
     color: #333;
-    background: #f1f1f1;
+    background: #f9f9f9;
     padding: 0;
 }
 

@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using Web.PageService;
 
 namespace Web.Pages.TicketApp
@@ -34,7 +33,7 @@ namespace Web.Pages.TicketApp
             return new PartialViewResult
             {
                 ViewName = "_ViewTicket",
-                ViewData = new Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<IEnumerable<Core.Entities.Ticket>>(ViewData, ticketList)
+                ViewData = new Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary<IEnumerable<Ticket>>(ViewData, ticketList)
             };
 
         }
@@ -45,8 +44,7 @@ namespace Web.Pages.TicketApp
             if (id == 0)
             {
                 //Create Modal
-
-                return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_CreateOrEditTicket", new Core.Entities.Ticket()) });
+                return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_CreateOrEditTicket", new Ticket())});
             }
             else
             {
@@ -59,7 +57,7 @@ namespace Web.Pages.TicketApp
 
         }
 
-        public async Task<JsonResult> OnPostCreateEditTicket(int id, Core.Entities.Ticket ticket)
+        public async Task<JsonResult> OnPostCreateEditTicket(int id, Ticket ticket)
         {
             if (id == 0)
             {
@@ -75,10 +73,11 @@ namespace Web.Pages.TicketApp
                 editTicket.CreatedBy = ticket.CreatedBy;
                 editTicket.DateCreated = ticket.DateCreated;
             }
+
             await _context.SaveChangesAsync();
             var ticketList = _context.Tickets.AsEnumerable();
-            return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
 
+            return new JsonResult(new { action = id, html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
         }
 
 
@@ -93,7 +92,7 @@ namespace Web.Pages.TicketApp
             }
 
             var ticketList = _context.Tickets.AsEnumerable();
-            return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
+            return new JsonResult(new {html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
 
         }
 

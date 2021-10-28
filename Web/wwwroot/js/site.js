@@ -3,7 +3,19 @@
 
 // Write your JavaScript code.
 
+setTimeout(() => {
+    AOS.init();
+}, 120);
+
 document.getElementById("year").innerText = new Date().getFullYear();
+
+var preloader = document.getElementById("preloader");
+window.addEventListener('load', function () {
+    if (preloader != 'undefined' && preloader != null) {
+        preloader.classList.add("hideLoader");
+    }
+})
+
 console.log(`%c
                               ,,,,,,,,,,,,,,,,,,,
                          ,,,,.                   ,,,,
@@ -46,6 +58,24 @@ console.log(`%c
 
 $(document).ready(function () {
 
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
     jQueryModalGet = (url, title) => {
         try {
             $.ajax({
@@ -60,6 +90,7 @@ $(document).ready(function () {
                 },
                 error: function (err) {
                     console.log(err)
+                    Command: toastr["error"]("Something went wrong!");
                 }
             })
             //to prevent default form submit event
@@ -78,13 +109,22 @@ $(document).ready(function () {
                 contentType: false,
                 processData: false,
                 success: function (res) {
-                    if (res.isValid) {
-                        $('#viewTicket').html(res.html)
-                        $('#form-modal').modal('hide');
+
+                    $('#viewTicket').html(res.html)
+                    $('#form-modal').modal('hide');
+
+                    //if Ticket id > 0 or Ticket ID != 0
+                    if (res.action) {
+                        //update
+                        Command: toastr["info"]("Ticket Successfully Updated");
+                    } else {
+                        //insert
+                        Command: toastr["success"]("Ticket Successfully Inserted");
                     }
                 },
                 error: function (err) {
                     console.log(err)
+                    Command: toastr["error"]("Something went wrong!");
                 }
             })
             return false;
@@ -105,9 +145,11 @@ $(document).ready(function () {
                     processData: false,
                     success: function (res) {
                         $('#viewTicket').html(res.html);
+                        Command: toastr["info"]("Ticket Successfully Deleted");
                     },
                     error: function (err) {
-                        console.log(err)
+                        console.log(err);
+                        Command: toastr["error"]("Something went wrong!");
                     }
                 })
             } catch (ex) {
@@ -116,5 +158,4 @@ $(document).ready(function () {
         }
         return false;
     }
-
 });
