@@ -38,7 +38,7 @@ namespace Web.Pages.TicketApp
 
         }
 
-        public async Task<JsonResult> OnGetViewTicketJSONPartial()
+        public async Task<JsonResult> OnGetViewTicketJSONPartial() 
         {
             var ticketList = _context.Tickets.AsEnumerable();
             return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
