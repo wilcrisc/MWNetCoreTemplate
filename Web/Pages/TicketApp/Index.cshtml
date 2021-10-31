@@ -4,11 +4,11 @@
 }
 
 <div class="d-inline">
-    <a id="reload" class="btn btn-success">
-        <i class="fas fa-refresh"></i>  
+    <a onclick="jQueryModalLoad('?handler=ViewTicketJSONPartial')" id="reload" class="btn btn-success">
+        <i class="fas fa-refresh"></i>
     </a>
     <a onclick="jQueryModalGet('?handler=CreateEdiTicketModal', 'Create Ticket')" class="btn btn-primary">
-        <i class="fas fa-plus"></i> 
+        <i class="fas fa-plus"></i>
     </a>
 </div>
 
@@ -16,15 +16,273 @@
 <div id="viewTicket">
 </div>
 
-@section Scripts{ 
+<hr />
+
+<div id="viewTicket2">
+</div>
+
+
+
+
+<div id="loader">
+    <ul class="o-vertical-spacing o-vertical-spacing--l">
+        <li class="blog-post o-media">
+            <div class="o-media__figure">
+                <span class="skeleton-box" style="width:100px;height:80px;"></span>
+            </div>
+            <div class="o-media__body">
+                <div class="o-vertical-spacing">
+                    <h3 class="blog-post__headline">
+                        <span class="skeleton-box" style="width:55%;"></span>
+                    </h3>
+                    <p>
+                        <span class="skeleton-box" style="width:80%;"></span>
+                        <span class="skeleton-box" style="width:90%;"></span>
+                        <span class="skeleton-box" style="width:83%;"></span>
+                        <span class="skeleton-box" style="width:80%;"></span>
+                    </p>
+                    <div class="blog-post__meta">
+                        <span class="skeleton-box" style="width:70px;"></span>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="blog-post o-media">
+            <div class="o-media__figure">
+                <span class="skeleton-box" style="width:100px;height:80px;"></span>
+            </div>
+            <div class="o-media__body">
+                <div class="o-vertical-spacing">
+                    <h3 class="blog-post__headline">
+                        <span class="skeleton-box" style="width:55%;"></span>
+                    </h3>
+                    <p>
+                        <span class="skeleton-box" style="width:80%;"></span>
+                        <span class="skeleton-box" style="width:90%;"></span>
+                        <span class="skeleton-box" style="width:83%;"></span>
+                        <span class="skeleton-box" style="width:80%;"></span>
+                    </p>
+                    <div class="blog-post__meta">
+                        <span class="skeleton-box" style="width:70px;"></span>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="blog-post o-media">
+            <div class="o-media__figure">
+                <span class="skeleton-box" style="width:100px;height:80px;"></span>
+            </div>
+            <div class="o-media__body">
+                <div class="o-vertical-spacing">
+                    <h3 class="blog-post__headline">
+                        <span class="skeleton-box" style="width:55%;"></span>
+                    </h3>
+                    <p>
+                        <span class="skeleton-box" style="width:80%;"></span>
+                        <span class="skeleton-box" style="width:90%;"></span>
+                        <span class="skeleton-box" style="width:83%;"></span>
+                        <span class="skeleton-box" style="width:80%;"></span>
+                    </p>
+                    <div class="blog-post__meta">
+                        <span class="skeleton-box" style="width:70px;"></span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+@section Scripts{
     <script>
         $(document).ready(function () {
-            $('#viewTicket').load('?handler=ViewTicketPartial');
+            $('#loader').hide();
+
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+            //$('#viewTicket').load('?handler=ViewTicketPartial');
+            //$('#reload').on('click', function () {
+            //    $('#viewTicket').load('?handler=ViewTicketPartial');
+            //});
+
+            jQueryModalGet = (url, title) => {
+                try {
+                    $.ajax({
+                        type: 'GET',
+                        url: url,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            $('#form-modal .modal-body').html(res.html);
+                            $('#form-modal .modal-title').html(title);
+                            $('#form-modal').modal('show');
+                        },
+                        error: function (err) {
+                            console.log(err)
+                            Command: toastr["error"]("Something went wrong!");
+                        }
+                    })
+                    //to prevent default form submit event
+                    return false;
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+
+            jQueryModalPost = form => {
+                try {
+                    $.ajax({
+                        type: 'POST',
+                        url: form.action,
+                        data: new FormData(form),
+                        contentType: false,
+                        processData: false,
+                        beforeSend: function () {
+                            $('#loader').show();
+                            $('#viewTicket').hide();
+                            $('#form-modal').modal('hide');
+                        },
+                        complete: function () {
+                            $('#viewTicket').show();
+                            $('#loader').hide();
+                        },
+                        success: function (res) {
+
+                            $('#viewTicket').html(res.html)
+
+                            //if Ticket id > 0 or Ticket ID != 0
+                            if (res.action) {
+                                //update
+                                Command: toastr["info"]("Ticket Successfully Updated");
+                            } else {
+                                //insert
+                                Command: toastr["success"]("Ticket Successfully Inserted");
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err)
+                            Command: toastr["error"]("Something went wrong!");
+                        }
+                    })
+                    return false;
+                } catch (ex) {
+                    console.log(ex)
+                }
+            }
+
+            jQueryModalDelete = form => {
+                if (confirm('Are you sure to delete this record ?')) {
+                    try {
+                        $.ajax({
+                            type: 'POST',
+                            url: form.action,
+                            data: new FormData(form),
+                            contentType: false,
+                            processData: false,
+                            beforeSend: function () {
+                                $('#loader').show();
+                            },
+                            complete: function () {
+                                $('#loader').hide();
+                            },
+                            success: function (res) {
+                                $('#viewTicket').html(res.html);
+                                Command: toastr["info"]("Ticket Successfully Deleted");
+                            },
+                            error: function (err) {
+                                console.log(err);
+                                Command: toastr["error"]("Something went wrong!");
+                            }
+                        })
+                    } catch (ex) {
+                        console.log(ex)
+                    }
+                }
+                return false;
+            }
         });
-        $(function () {
-            $('#reload').on('click', function () {
-                $('#viewTicket').load('?handler=ViewTicketPartial');
-            });
+
+        jQueryModalLoad = (url) => {
+            try {
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        //$('#loader').show();
+                        $('#viewTicket').hide();                      
+                    },
+                    complete: function () {
+                        $('#viewTicket').show();
+                        //$('#loader').hide();
+                    },
+                    success: function (res) {
+                        $('#viewTicket').html(res.html)
+                    },
+                    error: function (err) {
+                        console.log(err)
+                        Command: toastr["error"]("Something went wrong!");
+                    }
+                })
+                //to prevent default form submit event
+                return false;
+            } catch (ex) {
+                console.log(ex)
+            }
+        }
+
+        jQueryModalLoad2 = (url) => {
+            try {
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function () {
+                        $('#loader').show();
+                        $('#viewTicket2').hide();
+                    },
+                    complete: function () {
+                        $('#viewTicket2').show();
+                        $('#loader').hide();
+                    },
+                    success: function (res) {
+                        $('#viewTicket2').html(res.html)
+                    },
+                    error: function (err) {
+                        console.log(err)
+                        Command: toastr["error"]("Something went wrong!");
+                    }
+                })
+                //to prevent default form submit event
+                return false;
+            } catch (ex) {
+                console.log(ex)
+            }
+        }
+
+        $(window).on("load", function () {
+            console.log("window loaded");
+            jQueryModalLoad('?handler=ViewTicketJSONPartial');
+            jQueryModalLoad2('?handler=ViewTicketJSONPartialDelayed');
         });
+
     </script>
 }

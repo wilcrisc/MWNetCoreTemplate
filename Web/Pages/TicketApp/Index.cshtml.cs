@@ -38,13 +38,29 @@ namespace Web.Pages.TicketApp
 
         }
 
+        public async Task<JsonResult> OnGetViewTicketJSONPartial()
+        {
+            var ticketList = _context.Tickets.AsEnumerable();
+            return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
+
+        }
+        public async Task<JsonResult> OnGetViewTicketJSONPartialDelayed()
+        {
+            //Fake Delay
+            await Task.Delay(5000);
+            var ticketList = _context.Tickets.AsEnumerable();
+            return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
+        }
+
         //AJAX GET MODAL 
         public async Task<JsonResult> OnGetCreateEdiTicketModal(int id)
         {
+
+
             if (id == 0)
             {
                 //Create Modal
-                return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_CreateOrEditTicket", new Ticket())});
+                return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_CreateOrEditTicket", new Ticket()) });
             }
             else
             {
@@ -59,6 +75,8 @@ namespace Web.Pages.TicketApp
 
         public async Task<JsonResult> OnPostCreateEditTicket(int id, Ticket ticket)
         {
+            await Task.Delay(2000);
+
             if (id == 0)
             {
                 //Creating Ticket
@@ -80,19 +98,18 @@ namespace Web.Pages.TicketApp
             return new JsonResult(new { action = id, html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
         }
 
-
         public async Task<JsonResult> OnPostDeleteAsync(int id)
         {
-        
-            if(id != 0)
+
+            if (id != 0)
             {
-                var ticket =  await _context.Tickets.FindAsync(id);
+                var ticket = await _context.Tickets.FindAsync(id);
                 _context.Tickets.Remove(ticket);
                 await _context.SaveChangesAsync();
             }
 
             var ticketList = _context.Tickets.AsEnumerable();
-            return new JsonResult(new {html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
+            return new JsonResult(new { html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
 
         }
 

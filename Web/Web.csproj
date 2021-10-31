@@ -48,6 +48,15 @@
       <Generator>SassTranspiler</Generator>
       <LastGenOutput>childtheme.css</LastGenOutput>
     </Content>
+    <Content Update="wwwroot\css\skeletonloader.css">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>skeletonloader.scss</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\css\skeletonloader.scss">
+      <Generator>SassTranspiler</Generator>
+      <LastGenOutput>skeletonloader.css</LastGenOutput>
+    </Content>
   </ItemGroup>
 
 </Project>

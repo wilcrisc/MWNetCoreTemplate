@@ -133,7 +133,6 @@ $(document).ready(function () {
         }
     }
 
-
     jQueryModalDelete = form => {
         if (confirm('Are you sure to delete this record ?')) {
             try {
@@ -158,4 +157,5 @@ $(document).ready(function () {
         }
         return false;
     }
+
 });
