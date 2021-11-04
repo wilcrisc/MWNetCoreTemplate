@@ -23,7 +23,6 @@
 
 
 
-
 <div id="loader">
     <ul class="o-vertical-spacing o-vertical-spacing--l">
         <li class="blog-post o-media">
@@ -226,12 +225,12 @@
                     contentType: false,
                     processData: false,
                     beforeSend: function () {
-                        //$('#loader').show();
+                        $('#loader').show();
                         $('#viewTicket').hide();                      
                     },
                     complete: function () {
                         $('#viewTicket').show();
-                        //$('#loader').hide();
+                        $('#loader').hide();
                     },
                     success: function (res) {
                         $('#viewTicket').html(res.html)
@@ -281,7 +280,7 @@
         $(window).on("load", function () {
             console.log("window loaded");
             jQueryModalLoad('?handler=ViewTicketJSONPartial');
-            jQueryModalLoad2('?handler=ViewTicketJSONPartialDelayed');
+            //jQueryModalLoad2('?handler=ViewTicketJSONPartialDelayed');
         });
 
     </script>

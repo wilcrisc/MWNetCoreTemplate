@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Core.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,7 @@ namespace Web.Pages.TicketApp
         //AJAX GET TABLE DATA
         public PartialViewResult OnGetViewTicketPartial()
         {
+          
             var ticketList = _context.Tickets.AsEnumerable();
 
             return new PartialViewResult
@@ -40,6 +42,7 @@ namespace Web.Pages.TicketApp
 
         public async Task<JsonResult> OnGetViewTicketJSONPartial()
         {
+      
             var ticketList = _context.Tickets.AsEnumerable();
             return new JsonResult(new { isValid = true, html = await _renderService.ToStringAsync("_ViewTicket", ticketList) });
 
