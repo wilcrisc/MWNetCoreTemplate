@@ -51,6 +51,7 @@ namespace Web
             services.AddScoped<IRazorRenderService, RazorRenderService>();
 
             services.AddRazorPages();
+            services.AddWordPress(options => { });
 
         }
 
@@ -83,6 +84,7 @@ namespace Web
                 endpoints.MapDefaultControllerRoute();
 
             });
+            app.UseWordPress();
         }
     }
 }
